@@ -1,11 +1,27 @@
-- name: "HTML/CSS"
-  level: "Beginner"
+- name: "Ръчно тестване"
+  level: "Intermediate"
+  details: "Дизайн на тестови случаи, докладване на бъгове, регресионно тестване"
 
 - name: "Postman"
-  level: "Beginner"
+  level: "Intermediate"
+  details: "API testing, request creation, environment setup"
 
 - name: "SQL"
-  level: "Beginner"
+  level: "Intermediate"
+  details: "Query writing, database testing"
 
-- name: "Manual Testing"
+- name: "HTML/CSS"
+  level: "Intermediate"
+  details: "Web testing, layout inspection"
+
+- name: "Test Management Tools"
+  level: "Intermediate"
+  details: "JIRA, TestRail"
+
+- name: "Git"
   level: "Beginner"
+  details: "Version control basics"
+
+- name: "Browser Developer Tools"
+  level: "Intermediate"
+  details: "Console, Network, Elements inspection"

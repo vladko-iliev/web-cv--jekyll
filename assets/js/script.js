@@ -40,36 +40,156 @@
         activateTab(initial);
     }
 
-    // Theme toggle
+    // Theme toggle with enhanced transitions and system preference detection
     var THEME_KEY = 'preferredTheme';
     var toggleBtn = document.getElementById('theme-toggle');
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-    }
-
-    try {
-        var savedTheme = localStorage.getItem(THEME_KEY);
-        if (savedTheme) applyTheme(savedTheme);
-    } catch (e) {}
-
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
-            var isDark = document.body.classList.toggle('dark');
-            try { localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light'); } catch (e) {}
+    
+    function applyTheme(theme, skipStorage) {
+        var isDark = theme === 'dark';
+        document.body.classList.toggle('dark', isDark);
+        
+        if (toggleBtn) {
             var icon = toggleBtn.querySelector('i');
             if (icon) {
                 icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+                
+                // Add rotation animation
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.style.transition = 'none';
+                    icon.style.transform = '';
+                    setTimeout(() => {
+                        icon.style.transition = 'transform 0.3s ease';
+                    }, 50);
+                }, 300);
+            }
+        }
+        
+        if (!skipStorage) {
+            try {
+                localStorage.setItem(THEME_KEY, theme);
+            } catch (e) {}
+        }
+    }
+
+    // Check system preference
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    function handleSystemThemeChange(e) {
+        var savedTheme = localStorage.getItem(THEME_KEY);
+        if (!savedTheme) {
+            applyTheme(e.matches ? 'dark' : 'light', true);
+        }
+    }
+    
+    // Initialize theme
+    try {
+        var savedTheme = localStorage.getItem(THEME_KEY);
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            handleSystemThemeChange(prefersDark);
+        }
+    } catch (e) {}
+
+    // Listen for system theme changes
+    prefersDark.addListener(handleSystemThemeChange);
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            var isDark = document.body.classList.contains('dark');
+            applyTheme(isDark ? 'light' : 'dark');
+        });
+    }
+
+    // Scroll animations
+    function handleIntersection(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
         });
     }
 
-    // i18n - Enhanced for Jekyll
+    var observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.2,
+        rootMargin: '50px'
+    });
+
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Image loading animation
+    function setupImageLoading(img) {
+        if (img.complete) {
+            img.classList.add('loaded');
+            var placeholder = img.previousElementSibling;
+            if (placeholder && placeholder.classList.contains('avatar-placeholder')) {
+                placeholder.style.display = 'none';
+            }
+        } else {
+            img.addEventListener('load', function() {
+                img.classList.add('loaded');
+                var placeholder = img.previousElementSibling;
+                if (placeholder && placeholder.classList.contains('avatar-placeholder')) {
+                    placeholder.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    var avatar = document.querySelector('.avatar');
+    if (avatar) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'avatar-wrapper';
+        avatar.parentNode.insertBefore(wrapper, avatar);
+        
+        var placeholder = document.createElement('div');
+        placeholder.className = 'avatar-placeholder';
+        wrapper.appendChild(placeholder);
+        
+        wrapper.appendChild(avatar);
+        avatar.setAttribute('loading', 'lazy');
+        setupImageLoading(avatar);
+    }
+
+    // i18n - Enhanced version with transitions
     var LANG_KEY = 'preferredLang';
-    var translations = {
+    var contentElements = document.querySelectorAll('[data-i18n]');
+    var langButtons = document.querySelectorAll('.lang-button');
+    var activeTransition = false;
+
+    function fadeOut(element) {
+        return new Promise(resolve => {
+            element.style.opacity = '0';
+            setTimeout(resolve, 300);
+        });
+    }
+
+    function fadeIn(element) {
+        element.style.opacity = '1';
+    }
+
+    async function switchLanguage(lang) {
+        if (activeTransition) return;
+        activeTransition = true;
+
+        // Update buttons first
+        langButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+
+        try {
+            localStorage.setItem(LANG_KEY, lang);
+        } catch (e) {}
+
+        // Fade out all content
+        await Promise.all(
+            Array.from(contentElements).map(el => fadeOut(el))
+        );
+
+        // Update content
+        var translations = {
         en: {
             'tabs.about': 'About me',
             'tabs.experience': 'Experience',
@@ -219,20 +339,68 @@
         }
     };
 
-    function applyLanguage(lang) {
+    var contentElements = document.querySelectorAll('[data-i18n]');
+    var langButtons = document.querySelectorAll('.lang-button');
+    var activeTransition = false;
+
+    function fadeOut(element) {
+        return new Promise(resolve => {
+            element.style.opacity = '0';
+            setTimeout(resolve, 300);
+        });
+    }
+
+    function fadeIn(element) {
+        setTimeout(() => {
+            element.style.opacity = '1';
+        }, 50);
+    }
+
+    async function applyLanguage(lang) {
+        if (activeTransition) return;
+        activeTransition = true;
+
         var dict = translations[lang];
-        if (!dict) return;
-        
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        if (!dict) {
+            activeTransition = false;
+            return;
+        }
+
+        // Update buttons
+        langButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            
+            // Rotate flag icon on active button
+            const flagIcon = btn.querySelector('i');
+            if (flagIcon) {
+                if (btn.classList.contains('active')) {
+                    flagIcon.style.transform = 'scale(1.1) rotate(360deg)';
+                } else {
+                    flagIcon.style.transform = 'scale(1) rotate(0)';
+                }
+            }
+        });
+
+        // Store preference
+        try {
+            localStorage.setItem(LANG_KEY, lang);
+        } catch (e) {}
+
+        // Fade out all content
+        await Promise.all(
+            Array.from(contentElements).map(el => fadeOut(el))
+        );
+
+        // Update content and fade in
+        contentElements.forEach(el => {
             var key = el.getAttribute('data-i18n');
             if (dict[key]) {
                 el.textContent = dict[key];
+                fadeIn(el);
             }
         });
-        
-        document.querySelectorAll('.lang-button').forEach(function(btn){
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-        });
+
+        activeTransition = false;
     }
 
     // Initialize language after DOM is loaded
@@ -244,11 +412,11 @@
             applyLanguage('bg'); 
         }
 
-        document.querySelectorAll('.lang-button').forEach(function(btn){
-            btn.addEventListener('click', function(){
+        // Add click handlers
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
                 var lang = btn.getAttribute('data-lang');
                 applyLanguage(lang);
-                try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
             });
         });
     }

@@ -1,7 +1,7 @@
 about:
-  bg: "Аз съм QA manual tester без опит и имам малко познания по HTML & CSS."
-  en: "I am a QA manual tester with no experience and some knowledge of HTML & CSS."
-  de: "Ich bin ein manueller QA-Tester ohne Erfahrung und habe Grundkenntnisse in HTML & CSS."
+  bg: "Аз съм специалист по ръчно тестване (QA) и имам познания по HTML & CSS."
+  en: "I am a QA manual tester with knowledge of HTML & CSS."
+  de: "Ich bin ein manueller QA-Tester mit Kenntnissen in HTML & CSS."
 
 translations:
   bg:
