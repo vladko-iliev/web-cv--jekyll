@@ -1,56 +1,21 @@
-# Jekyll Configuration
-title: "Vladimir Iliev - CV"
-description: "Personal CV website with multi-language support"
-baseurl: ""
-url: ""
+title: Vladimir Iliev - CV
+description: Personal CV website with multi-language support
+baseurl: "/web-cv--jekyll"
+url: "https://vladko-iliev.github.io"
+
+# Theme Settings
+remote_theme: sharu725/online-cv
+skin: blue
 
 # Build settings
 markdown: kramdown
-highlighter: rouge
-theme: minima
+sass:
+  sass_dir: _sass
+  style: compressed
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# Collections
-collections:
-  experience:
-    output: false
-  education:
-    output: false
-  skills:
-    output: false
-
-# Default language
-default_lang: bg
-
-# Supported languages
-languages:
-  - bg
-  - en
-  - de
-
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-
-# Include
-include:
-  - _pages
-
-# Sass configuration
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Permalink structure
-permalink: /:categories/:year/:month/:day/:title/
+  - jekyll-remote-theme

@@ -1,18 +1,34 @@
+---
+#Add "layout: compress" here to compress the html code
+---
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.default_lang | default: 'bg' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title | default: site.title }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis45Gx5v1a6jQ1Zc2MZxZxQ0ZKJQ0B+Y9GfQ9hK5b0vYJQ1gqO3w0K5+5Q5e5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-    {% seo %}
-</head>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
+{% include head.html %}
+
 <body>
-    {{ content }}
-    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+  <button onclick="print()" class="print-button d-print-none">
+    <i class="fas fa-file-pdf"></i>Print
+  </button>
+
+  <button onclick="generatePDF()" class="pdf-button d-print-none" id="pdfButton">
+    <i class="fas fa-file-pdf"></i>PDF
+  </button>
+
+  <div class="wrapper">
+    {% include sidebar.html %}
+
+    <div class="main-wrapper">
+      {{ content }}
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+  {% include scripts.html %}
+  <script src="{{ site.baseurl }}/assets/js/pdf-generator.js"></script>
 </body>
+
 </html>

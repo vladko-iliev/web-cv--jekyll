@@ -3,6 +3,9 @@ source "https://rubygems.org"
 # Jekyll
 gem "jekyll", "~> 4.3.0"
 
+# Theme
+gem 'online-cv-theme', git: 'https://github.com/sharu725/online-cv'
+
 # Plugins
 gem "jekyll-feed", "~> 0.12"
 gem "jekyll-sitemap"
