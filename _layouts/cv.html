@@ -1,0 +1,109 @@
+---
+layout: default
+---
+
+<div class="container">
+    <header>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Превключи тема" title="Light/Dark">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="lang-switcher" aria-label="Language switcher">
+            {% for lang in site.languages %}
+            <button class="lang-button{% if lang == site.default_lang %} active{% endif %}" data-lang="{{ lang }}" title="{% case lang %}{% when 'en' %}English{% when 'de' %}Deutsch{% when 'bg' %}Български{% endcase %}">
+                <i class="fa-solid fa-language"></i> 
+                <span>{{ lang | upcase }}</span>
+            </button>
+            {% endfor %}
+        </div>
+        <img src="{{ '/assets/images/PBS_0271.jpg' | relative_url }}" alt="Профилна снимка" class="avatar">
+        <h1>{{ site.data.personal.name }}</h1>
+    </header>
+
+    <div class="personal-info">
+        <div>📧 {{ site.data.personal.email }}</div>
+        <div>📱 {{ site.data.personal.phone }}</div>
+        <div>📍 {{ site.data.personal.location }}</div>
+    </div>
+
+    <nav class="tabs" aria-label="CV Tabs">
+        <span class="tab-underline" aria-hidden="true"></span>
+        <button class="tab-button active" data-target="about">
+            <i class="fa-solid fa-user"></i> 
+            <span data-i18n="tabs.about">About me</span>
+        </button>
+        <button class="tab-button" data-target="experience">
+            <i class="fa-solid fa-briefcase"></i> 
+            <span data-i18n="tabs.experience">Трудов опит</span>
+        </button>
+        <button class="tab-button" data-target="education">
+            <i class="fa-solid fa-graduation-cap"></i> 
+            <span data-i18n="tabs.education">Образование</span>
+        </button>
+        <button class="tab-button" data-target="skills">
+            <i class="fa-solid fa-code"></i> 
+            <span data-i18n="tabs.skills">Skills</span>
+        </button>
+    </nav>
+
+    <div id="about" class="section tab-section active" role="region" aria-labelledby="tab-about">
+        <h2 data-i18n="sections.about">About me</h2>
+        <p data-i18n="about.text">{{ site.data.content.about.bg }}</p>
+    </div>
+
+    <div id="experience" class="section tab-section" role="region" aria-labelledby="tab-experience">
+        <h2 data-i18n="sections.experience">Трудов опит</h2>
+        {% for job in site.data.experience %}
+        <div class="experience-item">
+            <h3>{{ job.title }}</h3>
+            <div class="date">{{ job.period }}</div>
+            {% if job.company %}
+            <p><strong>{{ job.company }}</strong></p>
+            {% endif %}
+            {% if job.responsibilities %}
+            <ul>
+                {% for responsibility in job.responsibilities %}
+                <li>{{ responsibility }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="education" class="section tab-section" role="region" aria-labelledby="tab-education">
+        <h2 data-i18n="sections.education">Образование</h2>
+        {% for edu in site.data.education %}
+        <div class="education-item">
+            <h3>{{ edu.title }}</h3>
+            <div class="date">{{ edu.period }}</div>
+            <p>{{ edu.institution }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="skills" class="section tab-section" role="region" aria-labelledby="tab-skills">
+        <h2 data-i18n="sections.skills">Skills</h2>
+        <div class="skills">
+            {% for skill in site.data.skills %}
+            <div class="skill-item">{{ skill.name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="footer.rights">© 2025 Vladmir Iliev. All rights reserved.</p>
+    </footer>
+</div>
+
+<!-- Cookie consent banner -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies">
+    <div class="cookie-banner__content">
+        <div class="cookie-banner__text" data-i18n="cookie.text">
+            Този сайт използва бисквитки, за да подобри вашето изживяване. С приемането им се съгласявате с нашата политика за бисквитки.
+        </div>
+        <div class="cookie-banner__actions">
+            <button id="cookie-accept" class="cookie-btn" data-i18n="cookie.accept">Приемам</button>
+            <button id="cookie-decline" class="cookie-btn secondary" data-i18n="cookie.decline">Отказвам</button>
+        </div>
+    </div>
+</div>

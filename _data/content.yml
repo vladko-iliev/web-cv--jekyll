@@ -1,0 +1,59 @@
+about:
+  bg: "Аз съм QA manual tester без опит и имам малко познания по HTML & CSS."
+  en: "I am a QA manual tester with no experience and some knowledge of HTML & CSS."
+  de: "Ich bin ein manueller QA-Tester ohne Erfahrung und habe Grundkenntnisse in HTML & CSS."
+
+translations:
+  bg:
+    tabs:
+      about: "За мен"
+      experience: "Трудов опит"
+      education: "Образование"
+      skills: "Умения"
+    sections:
+      about: "За мен"
+      experience: "Трудов опит"
+      education: "Образование"
+      skills: "Умения"
+    cookie:
+      text: "Този сайт използва бисквитки, за да подобри вашето изживяване. С приемането им се съгласявате с нашата политика за бисквитки."
+      accept: "Приемам"
+      decline: "Отказвам"
+    footer:
+      rights: "© 2025 Владмир Илиев. Всички права запазени."
+  
+  en:
+    tabs:
+      about: "About me"
+      experience: "Experience"
+      education: "Education"
+      skills: "Skills"
+    sections:
+      about: "About me"
+      experience: "Experience"
+      education: "Education"
+      skills: "Skills"
+    cookie:
+      text: "This site uses cookies to improve your experience. By accepting, you agree to our cookie policy."
+      accept: "Accept"
+      decline: "Decline"
+    footer:
+      rights: "© 2025 Vladmir Iliev. All rights reserved."
+  
+  de:
+    tabs:
+      about: "Über mich"
+      experience: "Berufserfahrung"
+      education: "Ausbildung"
+      skills: "Fähigkeiten"
+    sections:
+      about: "Über mich"
+      experience: "Berufserfahrung"
+      education: "Ausbildung"
+      skills: "Fähigkeiten"
+    cookie:
+      text: "Diese Website verwendet Cookies, um Ihr Erlebnis zu verbessern. Mit der Annahme stimmen Sie unserer Cookie-Richtlinie zu."
+      accept: "Akzeptieren"
+      decline: "Ablehnen"
+    footer:
+      rights: "© 2025 Vladmir Iliev. Alle Rechte vorbehalten."
