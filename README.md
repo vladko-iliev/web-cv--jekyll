@@ -13,7 +13,7 @@ A modern, responsive CV website with multi-language support and dark/light theme
 
 ## 🚀 Live Demo
 
-[View Live Website](https://your-username.github.io/web-cv)
+[View Live Website](https://vladko-iliev.github.io/web-cv--jekyll/)
 
 ## 🛠️ Technologies Used
 
@@ -58,7 +58,7 @@ That's it! No build process required.
 1. Push to GitHub
 2. Go to Settings > Pages
 3. Select source branch (main)
-4. Your site will be available at `https://your-username.github.io/web-cv`
+4. Your site will be available at `https://vladko-iliev.github.io/web-cv--jekyll/`
 
 ### Other Platforms
 - **Netlify**: Drag and drop the folder

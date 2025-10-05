@@ -2,7 +2,7 @@
 title: "Vladimir Iliev - CV"
 description: "Personal CV website with multi-language support"
 baseurl: ""
-url: ""
+url: "https://vladko-iliev.github.io"
 
 # Build settings
 markdown: kramdown
