@@ -144,6 +144,7 @@ body.dark .container {
 header {
     text-align: center;
     padding: 4rem 2rem 6rem;
+    margin: 0 -2rem;  /* Компенсира padding-а на контейнера */
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 50%, var(--primary-dark) 100%);
     color: white;
     position: relative;
@@ -234,6 +235,7 @@ header h1 {
     justify-content: center;
     flex-wrap: wrap;
     padding: 2rem;
+    margin: 0 -2rem;  /* Компенсира padding-а на контейнера */
     background: var(--bg-secondary);
     gap: 2rem;
     border-bottom: 1px solid var(--border-color);
@@ -274,7 +276,7 @@ body.dark .personal-info > div {
 
 .section {
     margin: 0;
-    padding: 2.5rem;
+    padding: 2rem;
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
