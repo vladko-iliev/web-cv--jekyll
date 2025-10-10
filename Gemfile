@@ -1,15 +1,16 @@
 source "https://rubygems.org"
 
 # Jekyll
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 3.9.3"
+gem "kramdown-parser-gfm"
 
 # Plugins
-gem "jekyll-feed", "~> 0.17.0"
+gem "jekyll-feed", "~> 0.15.1"
 gem "jekyll-sitemap"
 gem "jekyll-seo-tag"
 
-# Required for Ruby 3+
-gem "webrick"
+# Theme
+gem "minima"
 
 # Windows specific gems
 platforms :mingw, :x64_mingw, :mswin do
