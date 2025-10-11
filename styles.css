@@ -661,7 +661,7 @@ footer {
     
     .lang-switcher {
         top: 0.5rem;
-        left: 0.5rem;
+        left: 1rem;
         gap: 0.25rem;
         flex-direction: row;
         align-items: center;
@@ -799,7 +799,7 @@ footer {
     
     .lang-switcher {
         top: 0.5rem;
-        left: 0.5rem;
+        left: 1rem;
         gap: 0.25rem;
         flex-direction: row;
     }
