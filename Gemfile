@@ -3,6 +3,7 @@ source "https://rubygems.org"
 # Jekyll
 gem "jekyll", "~> 3.9.3"
 gem "kramdown-parser-gfm"
+gem "kramdown", "~> 2.3.2"
 
 # Plugins
 gem "jekyll-feed", "~> 0.15.1"
