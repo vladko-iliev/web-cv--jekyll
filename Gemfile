@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
 # Jekyll
-gem "jekyll", "~> 3.9.3"
+gem "jekyll", "~> 4.3.2"
+gem "jekyll-sass-converter", "~> 3.0"
 gem "kramdown-parser-gfm"
 gem "kramdown", "~> 2.3.2"
 
