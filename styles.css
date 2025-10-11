@@ -1055,6 +1055,15 @@ footer {
     z-index: 1000;
 }
 
+@media (max-width: 768px) {
+    .tabs {
+        position: static;
+        width: 100%;
+        left: auto;
+        top: auto;
+    }
+}
+
 .vertical-tabs {
     display: flex;
     flex-direction: column;
