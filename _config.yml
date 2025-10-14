@@ -2,8 +2,8 @@
 title: "Vladimir Iliev - CV"
 description: "Personal CV website with multi-language support"
 
-baseurl: "/web-cv--jekyll"
-url: "https://vladko-iliev.github.io"
+baseurl: ""
+url: "https://vladimir-iliev-cv.netlify.app"
 
 # Build settings
 markdown: kramdown
